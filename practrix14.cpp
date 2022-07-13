@@ -1,7 +1,7 @@
 //made by mahadevan arul 
 #include<iostream>
-#include<fstream>
 #include<string>
+#include<iomanip>
 using namespace std;
 class Travels{
     protected:
@@ -25,9 +25,7 @@ class Travels{
         cin>>doj;
         cout<<"the no of passengers are: ";
         cin>>passengers;
-        cout<<"the total bill amount is: ";
-        cin>>billamount;
-	}
+    }
     void disp(){
         cout<<"the name is: "<<name<<endl;
         cout<<"the address is: "<<address<<endl;
@@ -37,7 +35,7 @@ class Travels{
         cout<<"the date of journey is: "<<doj<<endl;
         cout<<"the no of passengers are: "<<passengers<<endl;
         cout<<"the total bill amount is: "<<billamount<<endl;
-    }
+    } 
 };
 class Bus:public Travels{
     protected:
@@ -48,9 +46,6 @@ class Bus:public Travels{
         Travels::getinput();
         cout<<"enter the seatno: ";
         cin>>seatNo;
-        cout<<"enter the seat type: ";
-        cin.ignore();
-        getline(cin,seatType);
         cout<<"enter the busNo: ";
         cin>>busNo;
         cout<<"enter the pick up Point: ";
@@ -59,8 +54,9 @@ class Bus:public Travels{
         cout<<"enter the departure time: ";
         cin>>depatureTime;
         cout<<endl<<endl;
-        cout<<"thankyou for reserving your ticket"<<endl;
+        bill();
         disp();
+        cout<<"thankyou for reserving your ticket"<<endl;
     }
     void cancellation(){
         string n1;
@@ -99,7 +95,25 @@ class Bus:public Travels{
             cout<<"your departure time is: "<<depatureTime<<endl;
         }
 
-    }   
+    }  
+    void bill(){
+        int a;
+        cout<<"available bus types and price are: "<<endl;
+        cout<<setw(10)<<"1)AC bus "<<setw(15)<<"Rs 700/-"<<endl;
+        cout<<setw(10)<<"2)non AC bus "<<setw(15)<<"Rs 370/- "<<endl;
+        cout<<"enter your choice: ";
+        cin>>a;
+        switch(a){
+            case 1:
+            seatType="AC bus";
+            billamount=700;
+            break;
+            case 2:
+            seatType="non AC bus";
+            billamount=370;
+            break;
+        }
+    } 
 };
 class Train:public Travels{
     protected:
@@ -110,8 +124,6 @@ class Train:public Travels{
         Travels::getinput();
         cout<<"enter the seatNo: ";
         cin>>seatNo;
-        cout<<"enter the coachType: ";
-        cin>>coachType;
         cout<<"enter the trainNo: ";
         cin>>trainNo;
         cout<<"enter the pick up Point: ";
@@ -120,8 +132,9 @@ class Train:public Travels{
         cout<<"enter the departure time: ";
         cin>>depatureTime;
         cout<<endl<<endl;
-        cout<<"thankyou for reserving your ticket"<<endl;
+        bill();
         disp();
+        cout<<"thankyou for reserving your ticket"<<endl;
     }
     void cancellation(){
         string n1;
@@ -160,6 +173,34 @@ class Train:public Travels{
             cout<<"your departure time is: "<<depatureTime<<endl;             
         }
 
+    }
+    void bill(){
+        int a;
+        cout<<"available bus types and price are: "<<endl;
+        cout<<setw(10)<<"1)2 seater "<<setw(15)<<"Rs 370/-"<<endl;
+        cout<<setw(10)<<"2)2 sleeper "<<setw(15)<<"Rs 450/- "<<endl;
+        cout<<setw(10)<<"3)3 AC "<<setw(15)<<"Rs 1500/- "<<endl;
+        cout<<setw(10)<<"4)2 AC "<<setw(15)<<"Rs 2450/- "<<endl;
+        cout<<"enter your choice: ";
+        cin>>a;
+        switch(a){
+            case 1:
+            coachType="2 seater";
+            billamount=370;
+            break;
+            case 2:
+            coachType="2 sleeper";
+            billamount=450;
+            break;
+            case 3:
+            coachType="3 AC";
+            billamount=1500;
+            break;
+            case 4:
+            coachType="2 AC";
+            billamount=2450;
+            break;
+        }
     }
 };
 class billAmount:public Bus,public Train{
